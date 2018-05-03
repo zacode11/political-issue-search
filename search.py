@@ -59,7 +59,9 @@ def displayresults(issues, results):
             print(position)
 
 
-
+"""the first argument given to the script will be used as the query
+    Example: python search.py "Dick Durbin"
+"""
 def main():
     list_of_issues = create_dat("pol.json")
     query = ""

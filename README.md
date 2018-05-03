@@ -1,2 +1,2 @@
-#Cool politics
+# Cool politics
 

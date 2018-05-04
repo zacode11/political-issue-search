@@ -3,7 +3,8 @@ import re
 import sys
 import metapy
 import pytoml
-
+import os
+import shutil
 def create_dat(filename):
     issue_array = []
     with open(filename) as f:
@@ -34,40 +35,57 @@ def create_dat(filename):
     return issue_array
 
 """takes in q query, and returns a list of results from the dataset using metapy"""
-def performSearch(q):
+def performSearch(q, number_of_results):
+    if(os.path.isdir("idx")):
+        shutil.rmtree("idx")
     idx = metapy.index.make_inverted_index('config.toml')
     query = metapy.index.Document()
     ranker = metapy.index.OkapiBM25(k1=1.2,b=0.75,k3=500)
-    num_results = 10
     query.content(q.strip().lower())
-    results = ranker.score(idx, query, num_results)
+    results = ranker.score(idx, query, number_of_results)
     return results
 
 """function used to display the results from the query. takes in the list of all issues and the results of the query. Creates a nicely formatted display of the results"""
 def displayresults(issues, results):
     displayable_results = {}
+    list_of_topics = []
     for item in results:
         stance = issues[item[0]]
         if stance["topic"] not in displayable_results:
             displayable_results[stance["topic"]] = []
+            list_of_topics.append(stance["topic"])
             displayable_results[stance["topic"]].append(stance["document"])
         else:
             displayable_results[stance["topic"]].append(stance["document"])
-    for topic in displayable_results:
+    for topic in list_of_topics:
         print("\n\n" + topic + ":")
         for position in displayable_results[topic]:
             print(position)
 
 
-"""the first argument given to the script will be used as the query
-    Example: python search.py "Dick Durbin"
+
+"""function that performs and displays the search"""
+def search(query, number_of_results):
+    list_of_issues = create_dat("pol.json")
+    results = performSearch(query, number_of_results)
+    displayresults(list_of_issues, results)
+
+
+"""the first argument given to the script will be used as the
+    Second argument is the number returned results
+    Example: python search.py "Dick Durbin" 3
 """
 def main():
-    list_of_issues = create_dat("pol.json")
+    num_results = 10
     query = ""
     if(len(sys.argv) > 1):
         query = sys.argv[1]
+    if(len(sys.argv) > 2):
+        try:
+            num_results = int(sys.argv[2])
+        except ValueError:
+            print("Second argument must be a number (number of desired results)")
+            return
+    search(query, num_results)
 
-    results = performSearch(query)
-    displayresults(list_of_issues, results)
 main()

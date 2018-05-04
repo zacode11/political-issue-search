@@ -78,6 +78,9 @@ def search(query, number_of_results):
 def main():
     num_results = 10
     query = ""
+    if(len(sys.argv) == 1):
+        print("Please provide a query. And call this script in the form: python search.py [query]")
+        print("Optionally, can provide a second argument for the number of desired results: python search.py [query] [num_results]")
     if(len(sys.argv) > 1):
         query = sys.argv[1]
     if(len(sys.argv) > 2):

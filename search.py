@@ -5,7 +5,18 @@ import metapy
 import pytoml
 import os
 import shutil
+
+def create_dataset_folder():
+    if not os.path.isdir("politiciandataset"):
+        os.mkdir("politiciandataset")
+    with open("politiciandataset/line.toml", "w+") as f:
+        f.write("type = \"line-corpus\"")
+
+
+
+
 def create_dat(filename):
+    create_dataset_folder()
     issue_array = []
     with open(filename) as f:
         poli_json = json.load(f)

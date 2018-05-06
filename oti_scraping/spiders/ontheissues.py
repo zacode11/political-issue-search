@@ -1,23 +1,59 @@
 import scrapy
 
-from political.items import * 
+from oti_scraping.items import * 
+
+state_prefs = ['AK/', 'AL/', 'AR/', 'AZ/', 'CA/', 'CO/', 'CT/', 'DC/', 'DE/', 'FL/', 'GA/', 'HI/', 'IA/', 'ID/', 'IL/', 'IN/', 'KS/', 'KY/', 'LA/', 'MA/',
+'MD/', 'ME/', 'MI/', 'MN/', 'MO/', 'MS/', 'MT/', 'NC/', 'ND/', 'NE/', 'NH/', 'NJ/', 'NM/', 'NV/', 'NY/',
+'OH/', 'OK/', 'OR/', 'PA/', 'RI/', 'SC/', 'SD/', 'TN/', 'TX/', 'UT/', 'VA/', 'VT/', 'WA/', 'WI/', 'WV/', 'WY/']
 
 class OnTheIssuesSpider(scrapy.Spider):
 	name = "oti"
 
 	def start_requests(self):
 		urls = [
-			'http://senate.ontheissues.org/Senate/Richard_Shelby.htm',
-			'http://senate.ontheissues.org/Senate/Jeff_Sessions.htm',
-			'http://senate.ontheissues.org/Senate/Lisa_Murkowski.htm',
-			'http://senate.ontheissues.org/Senate/Dan_Sullivan.htm',
-			'http://senate.ontheissues.org/Senate/John_McCain.htm',
+			# 'http://senate.ontheissues.org/Senate/Richard_Shelby.htm',
+			# 'http://senate.ontheissues.org/Senate/Jeff_Sessions.htm',
+			# 'http://senate.ontheissues.org/Senate/Lisa_Murkowski.htm',
+			# 'http://senate.ontheissues.org/Senate/Dan_Sullivan.htm',
+			# 'http://senate.ontheissues.org/Senate/John_McCain.htm',
+			# 'http://senate.ontheissues.org/Senate/Jeff_Flake.htm',
+			# 'http://senate.ontheissues.org/Senate/John_Boozman.htm',
+			# 'http://senate.ontheissues.org/Senate/Tom_Cotton.htm',
+			# 'http://senate.ontheissues.org/Senate/Dianne_Feinstein.htm',
+			# 'http://senate.ontheissues.org/Senate/Barbara_Boxer.htm',
+			# 'http://senate.ontheissues.org/Senate/Michael_Bennet.htm',
+			# ''
+			'http://senate.ontheissues.org/Senate/Senate.htm',
+			'http://senate.ontheissues.org/House.htm'
 		]
 
 		for url in urls:
 			yield scrapy.Request(url=url, callback=self.parse)
 
 	def parse(self, response):
+		if response.url == 'http://senate.ontheissues.org/Senate/Senate.htm':
+			info = response.xpath('//td/a/@href').extract()
+			info = list(info)
+			info = list(filter(lambda x: not '/' in x and '_' in x, info))[17:]
+			info = set(info)
+			# print(info)
+			# print(len(info))
+			base_url = 'http://senate.ontheissues.org/Senate/'
+			for page in info:
+				page = base_url + page
+				yield scrapy.Request(page, callback=self.parse)
+			return
+		if response.url == 'http://senate.ontheissues.org/House.htm':
+			info = response.xpath('//td/a/@href').extract()
+			info = list(info)
+			info = list(filter(lambda x: (x[:3] in state_prefs or 'House/' in x) and '_' in x, info))[17:]
+			#print(info)
+			print(len(info))
+			base_url = 'http://senate.ontheissues.org/'
+			for page in info:
+				page = base_url + page
+				yield scrapy.Request(page, callback=self.parse)
+			return
 		#print("response:", response.body)
 		pol_info = response.xpath('//font[@face="Verdana, Arial, Tahoma, Helvetica, Sans-Serif"]/b/text()').extract()
 		name_path = response.url.split("/")[-1].split(".")[0]
@@ -29,11 +65,14 @@ class OnTheIssuesSpider(scrapy.Spider):
 		names = response.xpath('//td[@align="center"]/font[@face="Arial"]/text()').extract()
 		issues = list()
 		for x in range(0, len(names)):
-			print("hey:", tables[x])
+			#print("hey:", tables[x])
 			items = tables[x].xpath('li/text()').extract()
+			print(items)
+			# cool = tables[x].xpath('li')
+			# print(cool)
 			issue = IssueItem(issue=names[x].rstrip(), stances=items)
 			issues.append(dict(issue))
-			print("--------------ITEMS:", items)
+			#print("--------------ITEMS:", items)
 
 		politician['issues'] = issues
 		yield politician

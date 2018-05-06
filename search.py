@@ -47,6 +47,9 @@ def performSearch(q, number_of_results):
 
 """function used to display the results from the query. takes in the list of all issues and the results of the query. Creates a nicely formatted display of the results"""
 def displayresults(issues, results):
+    if(len(results) == 0):
+        print("No Results Found")
+        return
     displayable_results = {}
     list_of_topics = []
     for item in results:
@@ -66,6 +69,7 @@ def displayresults(issues, results):
 
 """function that performs and displays the search"""
 def search(query, number_of_results):
+    print("Searching for \"" + query + "\"")
     list_of_issues = create_dat("pol.json")
     results = performSearch(query, number_of_results)
     displayresults(list_of_issues, results)
@@ -81,6 +85,7 @@ def main():
     if(len(sys.argv) == 1):
         print("Please provide a query. And call this script in the form: python search.py [query]")
         print("Optionally, can provide a second argument for the number of desired results: python search.py [query] [num_results]")
+        return
     if(len(sys.argv) > 1):
         query = sys.argv[1]
     if(len(sys.argv) > 2):

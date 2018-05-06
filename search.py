@@ -14,6 +14,7 @@ def create_dat(filename):
             name = politician.get("name", "")
             image = politician.get("pic_url", "")
             issues = politician.get("issues", [])
+            office = politician.get("office", "")
             for issue in issues:
                 issue_name = issue.get("issue", 0)
                 stances = issue.get("stances", [])
@@ -23,7 +24,7 @@ def create_dat(filename):
                     list_item["image"] = image
                     list_item["topic"] = re.sub('[\n\r]', '', issue_name)
                     list_item["document"] = re.sub('[\n\r]', '', stance)
-                    dat_string = re.sub('[\n\r]', ' ', issue_name) + " " + re.sub('[\n\r]', ' ', stance)
+                    dat_string = re.sub('[\n\r]', ' ', office) + "" + re.sub('[\n\r]', ' ', issue_name) + " " + re.sub('[\n\r]', ' ', stance)
                     for char in dat_string:
                         if(ord(char) > 128):
                             dat_string = dat_string.replace(char, '')

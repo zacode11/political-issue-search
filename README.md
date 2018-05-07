@@ -5,11 +5,12 @@ Insert Project Description Here
 There are several ways to access and run the code for this project.
 1. [Download](https://github.com/zacode11/political-issue-search/archive/master.zip) or Clone the entire repository using `git clone https://github.com/zacode11/political-issue-search.git`
 2. Alternatively, the searching functionalities will execute if only the [stopword.txt](https://github.com/zacode11/political-issue-search/blob/master/stopwords.txt), [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py), and [config.toml](https://github.com/zacode11/political-issue-search/blob/master/config.toml) files along with the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder are downloaded.
-3. Lastly, if the user wishes to recreate the dataset using the crawler provided, instead of downloading the dataset provided, the following files will be necessary:
+3. Lastly, if the user wishes to recreate the dataset using the crawler provided, instead of downloading the dataset, the following files will be necessary:
 
 ### Prerequisites
-#### To Use the Crawler If the Dataset is Not Downloaded
+#### To Use the Crawler If the Dataset, the  [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder, is Not Downloaded
 Insert Description on how to use the crawler
+
 #### Other Prerequisites
 This project uses [metapy](https://github.com/meta-toolkit/metapy) Use the following steps to download.
 ```bash
@@ -21,10 +22,19 @@ module load python3
 # install metapy on your local directory
 pip install metapy pytoml --user
 ```
-This project also uses *JSON* and *Regular Expression (RegEx)*. Both are part of the python core library and will function as long as Python 2.6 or greater is being used. 
+This project also uses *JSON* and *Regular Expression (RegEx)*. Both are part of the python core library and will function as long as Python 2.6 or greater is being 
 
-### Installation
-Insert installation instructions here
+### Setting Up the Environment
+As long as the user has downloaded all the necessary files and installed all the prerequisite libraries, the environment should be all set up!
+
+##### config.toml
+Note: To rank the relevance of different documents for a given query, this project uses BM25 with the unigram language model. If the user wishes to use a different language model, such as a bigram model for example, they can do so by editing the [config.toml](https://github.com/zacode11/political-issue-search/blob/master/config.toml) file. The following section can be altered to make such a change.
+```toml
+[[analyzers]]
+method = "ngram-word"
+ngram = 1
+filter = "default-unigram-chain"
+```
 
 ## Running Script on the Terminal
 The searching functionality can be executed on the terminal with the following command. The results of the search will be printed to the terminal
@@ -64,7 +74,8 @@ create_dataset()
 ```
 
 #### search(query, number_of_results)
-This method takes in 2 parameters, the query as well as the number of desired results. This method will perform the search using the BM25 algorithm. It will print the results to the terminal, as well as provide a list of strings, where each string is a relevant document. The documents in the list are in decending order according to relevance. The first call of this function may take additional time to run if the inverted index, *idx*, folder has not been created yet.
+This method takes in 2 parameters, the query as well as the number of desired results. This method will perform the search using the BM25 algorithm. It will print the results to the terminal, as well as provide a list of strings, where each string is a relevant document. The documents in the list are in decending order according to relevance. The first call of this function may take additional time to run if the inverted index, *idx*, folder has not been created yet. 
+
 ```python
 # example code
 result_array = search("Richard Durbin on Education", 20)
@@ -72,4 +83,5 @@ result_array = search("Richard Durbin on Education", 20)
 # The size will be less than 20 if there are not 20 relevant results. 
 # Each list entry will be formatted as follows: "Document_name: document_content"
 ```
+Note: This method will not function properly if the *politiciandataset* folder is not in the same directory. If the folder is not in the directory, first run the **create_dataset** command. 
 

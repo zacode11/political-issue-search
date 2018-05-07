@@ -61,7 +61,7 @@ This method will create the *politiciandataset* folder for use by the search eng
 create_dataset()
 ```
 
-### search(query, number_of_results)
+#### search(query, number_of_results)
 This method takes in 2 parameters, the query as well as the number of desired results. This method will perform the search using the BM25 algorithm. It will print the results to the terminal, as well as provide a list of strings, where each string is a relevant document. The documents in the list are in decending order according to relevance. The first call of this function may take additional time to run if the inverted index, *idx*, folder has not been created yet.
 ```python
 # example code

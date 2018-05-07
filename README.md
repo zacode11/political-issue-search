@@ -67,7 +67,7 @@ from search import *
 This will give the user access to the methods in [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py)
 The important methods are as follows:
 #### create_dataset()
-This method will create the *politiciandataset* folder for use by the search engine.
+This method will create the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder for use by the search engine.
 ```python
 # example call
 create_dataset()
@@ -83,5 +83,5 @@ result_array = search("Richard Durbin on Education", 20)
 # The size will be less than 20 if there are not 20 relevant results. 
 # Each list entry will be formatted as follows: "Document_name: document_content"
 ```
-Note: This method will not function properly if the *politiciandataset* folder is not in the same directory. If the folder is not in the directory, first run the **create_dataset** command. 
+Note: This method will not function properly if the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder is not in the same directory. If the folder is not in the directory, first run the **create_dataset()** function. 
 

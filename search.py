@@ -49,8 +49,6 @@ def create_dat(filename):
 
 """takes in q query, and returns a list of results from the dataset using metapy"""
 def performSearch(q, number_of_results):
-    if(os.path.isdir("idx")):
-        shutil.rmtree("idx")
     idx = metapy.index.make_inverted_index('config.toml')
     query = metapy.index.Document()
     ranker = metapy.index.OkapiBM25(k1=1.2,b=0.75,k3=500)
@@ -58,11 +56,12 @@ def performSearch(q, number_of_results):
     results = ranker.score(idx, query, number_of_results)
     return results
 
-"""function used to display the results from the query. takes in the list of all issues and the results of the query. Creates a nicely formatted display of the results"""
-def displayresults(issues, results):
+"""function used to format/display the results from the query. takes in the list of all issues and the results of the query. Creates a nicely formatted display of the results. Results will only print to terminal if print_results is set to true"""
+def format_results(issues, results, print_results):
     retval = []
     if(len(results) == 0):
-        print("No Results Found")
+        if(print_results):
+            print("No Results Found")
         return
     displayable_results = {}
     list_of_topics = []
@@ -75,9 +74,11 @@ def displayresults(issues, results):
         else:
             displayable_results[stance["topic"]].append(stance["document"])
     for topic in list_of_topics:
-        print("\n\n" + topic + ":")
+        if(print_results):
+            print("\n\n" + topic + ":")
         for position in displayable_results[topic]:
-            print("\t" + position)
+            if(print_results):
+                print("\t" + position)
             retval.append(topic + ": " + position)
     return retval 
 
@@ -85,6 +86,8 @@ def displayresults(issues, results):
 """function used to create the json from the crawler and creates the dataset"""
 def create_dataset():
     #include code here to generate pol.json file
+    if(os.path.isdir("idx")):
+        shutil.rmtree("idx")
     create_dat("pol.json")
 
 
@@ -93,16 +96,19 @@ def create_dataset():
 
 
 
-"""function that performs and displays the search"""
-def search(query, number_of_results):
+"""function that performs and displays the search.
+   will yield number_of_results results. 
+   will print to terminal if print_results is set to true.
+   By default print_result is set to true. So, user can omit this parameter"""
+def search(query, number_of_results, print_results = True):
     if not os.path.isdir("politiciandataset"):
-	print("Creating dataset")
         create_dataset()
-    print("Searching for \"" + query + "\"")
+    if(print_results):
+        print("Searching for \"" + query + "\"")
     with open("politiciandataset/formatted_politician_data.json") as f:
         list_of_issues = json.load(f)
     result_indices = performSearch(query, number_of_results)
-    result_array = displayresults(list_of_issues, result_indices)
+    result_array = format_results(list_of_issues, result_indices, print_results)
 
 
 """the first argument given to the script will be used as the

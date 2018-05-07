@@ -67,21 +67,25 @@ from search import *
 This will give the user access to the methods in [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py)
 The important methods are as follows:
 #### create_dataset()
-This method will create the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder for use by the search engine.
+This method will create the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder for use by the search engine. This method will overwrite the folder if it already exists.
 ```python
 # example call
 create_dataset()
 ```
 
-#### search(query, number_of_results)
-This method takes in 2 parameters, the query as well as the number of desired results. This method will perform the search using the BM25 algorithm. It will print the results to the terminal, as well as provide a list of strings, where each string is a relevant document. The documents in the list are in decending order according to relevance. The first call of this function may take additional time to run if the inverted index, *idx*, folder has not been created yet. 
+#### search(query, number_of_results, print_results = True)
+This method takes in 3 parameters, the query, the number of desired results, and whether to print the results to the terminal. The third parameter, print_results is set to True by default, so it may be omitted if the user wishes for the results to be printed. This method will perform the search using the BM25 algorithm. It will print the results to the terminal, as well as provide a list of strings, where each string is a relevant document. The documents in the list are in decending order according to relevance. The first call of this function may take additional time to run if the inverted index, *idx*, folder has not been created yet. 
 
 ```python
-# example code
+# example code where print_results is omitted
 result_array = search("Richard Durbin on Education", 20)
 # will return an list of strings of size at most 20.
 # The size will be less than 20 if there are not 20 relevant results. 
 # Each list entry will be formatted as follows: "Document_name: document_content"
+# The results will be printed to the terminal
+
+# example code where results will not be printed
+result_array = search("Richard Durbin on Education", 20, False)
 ```
 Note: This method will not function properly if the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder is not in the same directory. If the folder is not in the directory, first run the **create_dataset()** function. 
 

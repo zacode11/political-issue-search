@@ -28,7 +28,7 @@ This project also uses *JSON* and *Regular Expression (RegEx)*. Both are part of
 As long as the user has downloaded all the necessary files and installed all the prerequisite libraries, the environment should be all set up!
 
 #### config.toml
-Note: To rank the relevance of different documents for a given query, this project uses BM25 with the unigram language model. If the user wishes to use a different language model, such as a bigram model for example, they can do so by editing the [config.toml](https://github.com/zacode11/political-issue-search/blob/master/config.toml) file. The following section can be altered to make such a change.
+Note: To rank the relevance of different documents for a given query, this project uses BM25 with the unigram analyzer. If the user wishes to use a different analyzer, such as a bigram for example, they can do so by editing the [config.toml](https://github.com/zacode11/political-issue-search/blob/master/config.toml) file. The following section can be altered to make such a change.
 ```toml
 [[analyzers]]
 method = "ngram-word"

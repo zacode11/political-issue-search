@@ -21,6 +21,8 @@ module load python3
 # install metapy on your local directory
 pip install metapy pytoml --user
 ```
+This project also uses *JSON* and *Regular Expression (RegEx)*. So, these will also need to be installed/downloaded. Both are part of the python core library and will function as long as Python 2.6 or greater is being used. 
+
 ### Installation
 Insert installation instructions here
 
@@ -66,6 +68,8 @@ This method takes in 2 parameters, the query as well as the number of desired re
 ```python
 # example code
 result_array = search("Richard Durbin on Education", 20)
-# will return an list of strings of size at most 20, the size will be less than 20 if there are not 20 relevant results. Each list entry will be formatted as follows: "Document_name: document_content"
+# will return an list of strings of size at most 20.
+# The size will be less than 20 if there are not 20 relevant results. 
+# Each list entry will be formatted as follows: "Document_name: document_content"
 ```
 

@@ -109,6 +109,7 @@ def search(query, number_of_results, print_results = True):
         list_of_issues = json.load(f)
     result_indices = performSearch(query, number_of_results)
     result_array = format_results(list_of_issues, result_indices, print_results)
+    return result_array
 
 
 """the first argument given to the script will be used as the
@@ -119,8 +120,8 @@ def main():
     num_results = 10
     query = ""
     if(len(sys.argv) == 1):
-        print("Please provide a query. And call this script in the form: python search.py [query]")
-        print("Optionally, can provide a second argument for the number of desired results: python search.py [query] [num_results]")
+        #print("Please provide a query. And call this script in the form: python search.py [query]")
+        #print("Optionally, can provide a second argument for the number of desired results: python search.py [query] [num_results]")
         return
     if(len(sys.argv) > 1):
         query = sys.argv[1]

@@ -62,7 +62,7 @@ Running the code on the terminal will generate the dataset, the [politiciandatas
 Include the following line at the top of the python script:
 ```python
 # to gain access to the search methods
-from search import *
+import search
 ```
 This will give the user access to the methods in [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py)
 The important methods are as follows:
@@ -70,7 +70,7 @@ The important methods are as follows:
 This method will create the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder for use by the search engine. This method will overwrite the folder if it already exists.
 ```python
 # example call
-create_dataset()
+search.create_dataset()
 ```
 
 #### search(query, number_of_results, print_results = True)
@@ -78,14 +78,14 @@ This method takes in 3 parameters, the query, the number of desired results, and
 
 ```python
 # example code where print_results is omitted
-result_array = search("Richard Durbin on Education", 20)
+result_array = search.search("Richard Durbin on Education", 20)
 # will return an list of strings of size at most 20.
 # The size will be less than 20 if there are not 20 relevant results. 
 # Each list entry will be formatted as follows: "Document_name: document_content"
 # The results will be printed to the terminal
 
 # example code where results will not be printed
-result_array = search("Richard Durbin on Education", 20, False)
+result_array = search.search("Richard Durbin on Education", 20, False)
 ```
 Note: This method will not function properly if the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder is not in the same directory. If the folder is not in the directory, first run the **create_dataset()** function. 
 

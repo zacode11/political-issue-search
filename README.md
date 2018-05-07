@@ -8,7 +8,7 @@ There are several ways to access and run the code for this project.
 3. Lastly, if the user wishes to recreate the dataset using the crawler provided, instead of downloading the dataset, the following files will be necessary:
 
 ### Prerequisites
-#### To Use the Crawler If the Dataset, the  [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder, is Not Downloaded
+#### To Use the Crawler if the Dataset, the  [Politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) Folder, is not Downloaded
 Insert Description on how to use the crawler
 
 #### Other Prerequisites
@@ -27,7 +27,7 @@ This project also uses *JSON* and *Regular Expression (RegEx)*. Both are part of
 ### Setting Up the Environment
 As long as the user has downloaded all the necessary files and installed all the prerequisite libraries, the environment should be all set up!
 
-##### config.toml
+#### config.toml
 Note: To rank the relevance of different documents for a given query, this project uses BM25 with the unigram language model. If the user wishes to use a different language model, such as a bigram model for example, they can do so by editing the [config.toml](https://github.com/zacode11/political-issue-search/blob/master/config.toml) file. The following section can be altered to make such a change.
 ```toml
 [[analyzers]]

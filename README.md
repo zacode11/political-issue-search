@@ -21,7 +21,7 @@ module load python3
 # install metapy on your local directory
 pip install metapy pytoml --user
 ```
-This project also uses *JSON* and *Regular Expression (RegEx)*. So, these will also need to be installed/downloaded. Both are part of the python core library and will function as long as Python 2.6 or greater is being used. 
+This project also uses *JSON* and *Regular Expression (RegEx)*. Both are part of the python core library and will function as long as Python 2.6 or greater is being used. 
 
 ### Installation
 Insert installation instructions here

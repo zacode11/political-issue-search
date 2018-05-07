@@ -44,7 +44,8 @@ def create_dat(filename):
                     dat.write(dat_string.lower())
                     dat.write("\n")
                     issue_array.append(list_item)
-    return issue_array
+    with open("politiciandataset/formatted_politician_data.json", "w+") as f:
+        json.dump(issue_array, f)
 
 """takes in q query, and returns a list of results from the dataset using metapy"""
 def performSearch(q, number_of_results):
@@ -59,6 +60,7 @@ def performSearch(q, number_of_results):
 
 """function used to display the results from the query. takes in the list of all issues and the results of the query. Creates a nicely formatted display of the results"""
 def displayresults(issues, results):
+    retval = []
     if(len(results) == 0):
         print("No Results Found")
         return
@@ -75,16 +77,32 @@ def displayresults(issues, results):
     for topic in list_of_topics:
         print("\n\n" + topic + ":")
         for position in displayable_results[topic]:
-            print(position)
+            print("\t" + position)
+            retval.append(topic + ": " + position)
+    return retval 
+
+
+"""function used to create the json from the crawler and creates the dataset"""
+def create_dataset():
+    #include code here to generate pol.json file
+    create_dat("pol.json")
+
+
+
+
 
 
 
 """function that performs and displays the search"""
 def search(query, number_of_results):
+    if not os.path.isdir("politiciandataset"):
+	print("Creating dataset")
+        create_dataset()
     print("Searching for \"" + query + "\"")
-    list_of_issues = create_dat("pol.json")
-    results = performSearch(query, number_of_results)
-    displayresults(list_of_issues, results)
+    with open("politiciandataset/formatted_politician_data.json") as f:
+        list_of_issues = json.load(f)
+    result_indices = performSearch(query, number_of_results)
+    result_array = displayresults(list_of_issues, result_indices)
 
 
 """the first argument given to the script will be used as the

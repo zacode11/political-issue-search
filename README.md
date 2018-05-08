@@ -79,7 +79,7 @@ This method takes in 3 parameters, the query, the number of desired results, and
 ```python
 # example code where print_results is omitted
 result_array = search.search("Richard Durbin on Education", 20)
-# will return an list of strings of size at most 20.
+# will return a list of strings of size at most 20.
 # The size will be less than 20 if there are not 20 relevant results. 
 # Each list entry will be formatted as follows: "Document_name: document_content"
 # The results will be printed to the terminal
@@ -87,5 +87,5 @@ result_array = search.search("Richard Durbin on Education", 20)
 # example code where results will not be printed
 result_array = search.search("Richard Durbin on Education", 20, False)
 ```
-Note: This method will not function properly if the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder is not in the same directory. If the folder is not in the directory, first run the **create_dataset()** function. 
+Note: This method will call the **create_dataset()** if the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder is not in the same directory. 
 

@@ -17,9 +17,7 @@ interests groups (such as the NRA).
 There are several ways to access and run the code for this project.
 1. [Download](https://github.com/zacode11/political-issue-search/archive/master.zip) or Clone the entire repository using `git clone https://github.com/zacode11/political-issue-search.git`
 2. Alternatively, the searching functionalities will execute if only the [stopword.txt](https://github.com/zacode11/political-issue-search/blob/master/stopwords.txt), [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py), and [config.toml](https://github.com/zacode11/political-issue-search/blob/master/config.toml) files along with the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder are downloaded.
-3. If the user wishes to recreate the dataset using the crawler provided, instead of downloading the dataset, the following files will be necessary:
-
-[scrapy.cfg](https://github.com/zacode11/political-issue-search/blob/master/scrapy.cfg) and the contents of the [oti_scraping](https://github.com/zacode11/political-issue-search/blob/master/oti_scraping) folder.
+3. If the user wishes to recreate the dataset using the crawler provided, instead of downloading the dataset, the following files will be necessary: [scrapy.cfg](https://github.com/zacode11/political-issue-search/blob/master/scrapy.cfg) and the contents of the [oti_scraping](https://github.com/zacode11/political-issue-search/blob/master/oti_scraping) folder.
 
 ### Prerequisites
 #### To Use the Crawler if the Dataset, the  [Politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) Folder, is not Downloaded

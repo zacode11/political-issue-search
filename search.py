@@ -93,7 +93,9 @@ def format_results(issues, results, print_results):
 
 """function used to create the json from the crawler and creates the dataset"""
 def create_dataset():
-    #include code here to generate pol.json file
+    if not os.path.exists("pol.json"):
+        print("creating json")
+        os.system("scrapy crawl oti -o pol.json")
     if(os.path.isdir("idx")):
         shutil.rmtree("idx")
     create_dat("pol.json")

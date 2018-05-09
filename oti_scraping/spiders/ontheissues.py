@@ -11,8 +11,9 @@ class OnTheIssuesSpider(scrapy.Spider):
 
 	def start_requests(self):
 		urls = [
-			'http://senate.ontheissues.org/Senate/Senate.htm',
-			'http://senate.ontheissues.org/House.htm'
+			'http://senate.ontheissues.org/Senate/Tom_Udall.htm',
+			# 'http://senate.ontheissues.org/Senate/Senate.htm',
+			# 'http://senate.ontheissues.org/House.htm'
 		]
 
 		for url in urls:
@@ -58,9 +59,19 @@ class OnTheIssuesSpider(scrapy.Spider):
 			#print(items)
 			# cool = tables[x].xpath('li')
 			# print(cool)
-			issue = IssueItem(issue=names[x].rstrip(), stances=items)
+			new_items = list()
+			skip = False
+			for item in items:
+				if "Rated" in item:
+					skip = True
+				elif not skip:
+					new_items.append(item)
+				else:
+					skip = False
+			print(new_items)
+
+			issue = IssueItem(issue=names[x].rstrip(), stances=new_items)
 			issues.append(dict(issue))
-			#print("--------------ITEMS:", items)
 
 		politician['issues'] = issues
 		yield politician

@@ -9,7 +9,7 @@ import json
 class JsonPipeline(object):
 
     def open_spider(self, spider):
-        self.file = open('poli.json', 'w')
+        self.file = open('pol.json', 'w')
 
     def close_spider(self, spider):
         self.file.close()

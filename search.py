@@ -80,7 +80,15 @@ def format_results(issues, results, print_results):
             if(print_results):
                 print("\t" + position)
             retval.append(topic + ": " + position)
-    return retval 
+    return retval
+
+
+
+
+
+
+
+
 
 
 """function used to create the json from the crawler and creates the dataset"""
@@ -96,8 +104,14 @@ def create_dataset():
 
 
 
+
+
+
+
+
+
 """function that performs and displays the search.
-   will yield number_of_results results. 
+   will yield number_of_results results.
    will print to terminal if print_results is set to true.
    By default print_result is set to true. So, user can omit this parameter"""
 def search(query, number_of_results, print_results = True):
@@ -134,3 +148,35 @@ def main():
     search(query, num_results)
 
 main()
+
+
+
+
+
+
+
+"""For use by the front-end of this project. returns an array of dictionaries. Each dictionary is informatoin about each returned result from the query"""
+def front_end_search(query, number_of_results):
+    if not os.path.isdir("politiciandataset"):
+        create_dataset()
+    retval = []
+    with open("politiciandataset/formatted_politician_data.json") as f:
+        list_of_issues = json.load(f)
+    result_indices = performSearch(query, number_of_results)
+    for item in result_indices:
+        stance = list_of_issues[item[0]]
+        current_entry = None
+        for i in range(len(retval)):
+            entry = retval[i]
+            if entry.get("topic", "") == stance["topic"]:
+                current_entry = entry
+                break
+        if current_entry is None:
+            current_entry = {}
+            retval.append(current_entry)
+            current_entry["name"] = stance["name"]
+            current_entry["topic"] = stance["topic"]
+            current_entry["image"] = stance["image"]
+            current_entry["stance"] = []
+        current_entry["stance"].append(stance["document"])
+    return retval

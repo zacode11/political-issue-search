@@ -64,7 +64,7 @@ python search.py query number_of_results
 python search.py "Jeff Sessions on abortions" 3
 ```
 
-Running the code on the terminal will generate the dataset, the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder, as well as create an inverted index if neither already exists in the project. This may result in the first execution taking significantly longer than subsequent runs.
+Running the code on the terminal will generate the dataset, the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder as well as create an inverted index if any of them do not already exists in the project. This may result in the first execution taking significantly longer than subsequent runs. In the case the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder needs to be created, if [pol.json](https://github.com/zacode11/political-issue-search/blob/master/pol.json) is not in the current directory, it will be created as well using the scrapy crawler.       
 
 
 
@@ -77,7 +77,7 @@ import search
 This will give the user access to the methods in [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py)
 The important methods are as follows:
 #### create_dataset()
-This method will create the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder for use by the search engine. This method will overwrite the folder if it already exists.
+This method will create the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder for use by the search engine. This method will overwrite the folder if it already exists. Additionally, this method will create the [pol.json](https://github.com/zacode11/political-issue-search/blob/master/pol.json) file using the scrapy crawler  if it does not exist in the current directory (make take up to 30 seconds).
 ```python
 # example call
 search.create_dataset()

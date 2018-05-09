@@ -1,10 +1,12 @@
 # Politician Stance Search Engine
-Our search engine is geared towards independent voters voting in United States elections.
-Candidates can be found for both statewide elections (gubernatorial and senate) as well as presidential.
+Our search engine is geared towards people who are interested in politics and want to view the stances of politicians on various issues, such as education, healthcare, and economic policy. This search engine can also help independent and undecided voters determine which candidates align with their stances and opinions.
+
+Candidates can be found for Congressional elections, statewide elections (gubernatorial and senate), and presidential.
 You can type in anything related to politics and elections and it will show up. Here are some examples for search suggestions:
 1. "Illinois education"
 2. "Bernie Sanders"
 3. "Rand Paul Healthcare"
+4. "Peter Roskam"
 
 The search engine will return relevant results on politician stances as well as ratings given to them by various
 interests groups (such as the NRA).

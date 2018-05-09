@@ -11,9 +11,9 @@ class OnTheIssuesSpider(scrapy.Spider):
 
 	def start_requests(self):
 		urls = [
-			'http://senate.ontheissues.org/Senate/Tom_Udall.htm',
-			# 'http://senate.ontheissues.org/Senate/Senate.htm',
-			# 'http://senate.ontheissues.org/House.htm'
+			#'http://senate.ontheissues.org/Senate/Tom_Udall.htm',
+			'http://senate.ontheissues.org/Senate/Senate.htm',
+			'http://senate.ontheissues.org/House.htm'
 		]
 
 		for url in urls:

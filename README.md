@@ -19,7 +19,14 @@ There are several ways to access and run the code for this project.
 
 ### Prerequisites
 #### To Use the Crawler if the Dataset, the  [Politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) Folder, is not Downloaded
-Insert Description on how to use the crawler
+The crawler is built with scrapy. Use the following command to download the scrapy python package.
+```bash
+pip install scrapy
+```
+Within the main directory containing scrapy.cfg, run the following commmand to scrape the data (if you want to scrape it again)
+```bash
+scrapy crawl oti -o pol.json
+```
 
 #### Other Prerequisites
 This project uses [metapy](https://github.com/meta-toolkit/metapy) Use the following steps to download.

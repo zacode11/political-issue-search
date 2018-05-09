@@ -1,6 +1,8 @@
 # Politician Stance Search Engine
 Our search engine is geared towards people who are interested in politics and want to view the stances of politicians on various issues, such as education, healthcare, and economic policy. This search engine can also help independent and undecided voters determine which candidates align with their stances and opinions.
 
+This project provides a python API, a web application, and a command line interface.
+
 Candidates can be found for Congressional elections, statewide elections (gubernatorial and senate), and presidential.
 You can type in anything related to politics and elections and it will show up. Here are some examples for search suggestions:
 1. "Illinois education"
@@ -23,11 +25,11 @@ The crawler is built with scrapy. Use the following command to download the scra
 ```bash
 pip install scrapy
 ```
-Within the main directory containing scrapy.cfg, run the following commmand to scrape the data (if you want to scrape it again)
+Within the main directory containing scrapy.cfg, run the following command to scrape the data (if you want to scrape it again)
 ```bash
 scrapy crawl oti -o pol.json
 ```
-
+This will generate a list of json objects in [pol.json](https://github.com/zacode11/political-issue-search/blob/master/pol.json)
 #### Other Prerequisites
 This project uses [metapy](https://github.com/meta-toolkit/metapy) Use the following steps to download.
 ```bash

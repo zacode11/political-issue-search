@@ -17,7 +17,7 @@ interests groups (such as the NRA).
 There are several ways to access and run the code for this project.
 1. [Download](https://github.com/zacode11/political-issue-search/archive/master.zip) or Clone the entire repository using `git clone https://github.com/zacode11/political-issue-search.git`
 2. Alternatively, the searching functionalities will execute if only the [stopword.txt](https://github.com/zacode11/political-issue-search/blob/master/stopwords.txt), [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py), and [config.toml](https://github.com/zacode11/political-issue-search/blob/master/config.toml) files along with the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder are downloaded.
-3. If the user wishes to recreate the dataset using the crawler provided, instead of downloading the dataset, the following files will be necessary: [scrapy.cfg](https://github.com/zacode11/political-issue-search/blob/master/scrapy.cfg) and the contents of the [oti_scraping](https://github.com/zacode11/political-issue-search/blob/master/oti_scraping) folder.
+3. If the user wishes to recreate the dataset using the crawler provided, instead of downloading the dataset, the following files will be necessary: [scrapy.cfg](https://github.com/zacode11/political-issue-search/blob/master/scrapy.cfg) and the contents of the [oti_scraping](https://github.com/zacode11/political-issue-search/blob/master/oti_scraping) folder. Additionally, [stopword.txt](https://github.com/zacode11/political-issue-search/blob/master/stopwords.txt), [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py), and [config.toml](https://github.com/zacode11/political-issue-search/blob/master/config.toml) files will be needed to conduct searches.
 
 ### Prerequisites
 #### To Use the Crawler if the Dataset, the  [Politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) Folder, is not Downloaded
@@ -91,6 +91,11 @@ This method will create the [politiciandataset](https://github.com/zacode11/poli
 # example call
 search.create_dataset()
 ```
+
+#### clear_dataset()
+This method will clear the existing dataset files/folders. It will delete the following files/folders if they exist: [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset), [idx](https://github.com/zacode11/political-issue-search/blob/master/idx), and [pol.json](https://github.com/zacode11/political-issue-search/blob/master/pol.json)
+
+
 
 #### search(query, number_of_results, print_results = True)
 This method takes in 3 parameters, the query, the number of desired results, and whether to print the results to the terminal. The third parameter, print_results is set to True by default, so it may be omitted if the user wishes for the results to be printed. This method will perform the search using the BM25 algorithm. It will print the results to the terminal, as well as provide a list of strings, where each string is a relevant document. The documents in the list are in descending order according to relevance. The first call of this function may take additional time to run if the inverted index, *idx*, folder has not been created yet.

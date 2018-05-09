@@ -15,6 +15,19 @@ def create_dataset_folder():
 
 
 
+"""function used to clear the dasaset. Primarily, the idx folder, the politiciandataset folder, and pol.json"""
+def clear_dataset():
+    if(os.path.isdir("politiciandataset")):
+        print("Removing politiciandataset")
+        shutil.rmtree("politiciandataset")
+    if(os.path.isdir("idx")):
+        print("Removing idx")
+        shutil.rmtree("idx")
+    if(os.path.exists("pol.json")):
+        print("Removing pol.json")
+        os.remove("pol.json")
+
+
 def create_dat(filename):
     create_dataset_folder()
     issue_array = []

@@ -11,18 +11,6 @@ class OnTheIssuesSpider(scrapy.Spider):
 
 	def start_requests(self):
 		urls = [
-			# 'http://senate.ontheissues.org/Senate/Richard_Shelby.htm',
-			# 'http://senate.ontheissues.org/Senate/Jeff_Sessions.htm',
-			# 'http://senate.ontheissues.org/Senate/Lisa_Murkowski.htm',
-			# 'http://senate.ontheissues.org/Senate/Dan_Sullivan.htm',
-			# 'http://senate.ontheissues.org/Senate/John_McCain.htm',
-			# 'http://senate.ontheissues.org/Senate/Jeff_Flake.htm',
-			# 'http://senate.ontheissues.org/Senate/John_Boozman.htm',
-			# 'http://senate.ontheissues.org/Senate/Tom_Cotton.htm',
-			# 'http://senate.ontheissues.org/Senate/Dianne_Feinstein.htm',
-			# 'http://senate.ontheissues.org/Senate/Barbara_Boxer.htm',
-			# 'http://senate.ontheissues.org/Senate/Michael_Bennet.htm',
-			# ''
 			'http://senate.ontheissues.org/Senate/Senate.htm',
 			'http://senate.ontheissues.org/House.htm'
 		]
@@ -48,7 +36,7 @@ class OnTheIssuesSpider(scrapy.Spider):
 			info = list(info)
 			info = list(filter(lambda x: (x[:3] in state_prefs or 'House/' in x) and '_' in x, info))[17:]
 			#print(info)
-			print(len(info))
+			#print(len(info))
 			base_url = 'http://senate.ontheissues.org/'
 			for page in info:
 				page = base_url + page
@@ -67,7 +55,7 @@ class OnTheIssuesSpider(scrapy.Spider):
 		for x in range(0, len(names)):
 			#print("hey:", tables[x])
 			items = tables[x].xpath('li/text()').extract()
-			print(items)
+			#print(items)
 			# cool = tables[x].xpath('li')
 			# print(cool)
 			issue = IssueItem(issue=names[x].rstrip(), stances=items)

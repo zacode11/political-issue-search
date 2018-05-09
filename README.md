@@ -77,7 +77,7 @@ Running the code on the terminal will generate the dataset, the [politiciandatas
 
 
 
-## Executing Specific Methods from Another Script
+## Python API
 Include the following line at the top of the python script:
 ```python
 # to gain access to the search methods
@@ -94,7 +94,10 @@ search.create_dataset()
 
 #### clear_dataset()
 This method will clear the existing dataset files/folders. It will delete the following files/folders if they exist: [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset), [idx](https://github.com/zacode11/political-issue-search/blob/master/idx), and [pol.json](https://github.com/zacode11/political-issue-search/blob/master/pol.json)
-
+```python
+#example call
+search.clear_dataset()
+```
 
 
 #### search(query, number_of_results, print_results = True)

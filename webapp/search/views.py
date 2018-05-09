@@ -1,6 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
+import os, sys, inspect
+
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+
+import search
+
 
 def index(request):
 	if request.method == 'POST':
@@ -11,5 +17,5 @@ def index(request):
 
 def results(request):
 	query = request.GET.get('q', '')
-	print(query)
+	print(search.front_end_search(query, 5))
 	return HttpResponse(render(request, 'search/results.html'))

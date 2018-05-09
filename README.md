@@ -19,6 +19,8 @@ There are several ways to access and run the code for this project.
 2. Alternatively, the searching functionalities will execute if only the [stopword.txt](https://github.com/zacode11/political-issue-search/blob/master/stopwords.txt), [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py), and [config.toml](https://github.com/zacode11/political-issue-search/blob/master/config.toml) files along with the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder are downloaded.
 3. If the user wishes to recreate the dataset using the crawler provided, instead of downloading the dataset, the following files will be necessary:
 
+scrapy.cfg and the contents of the oti_scraping folder.
+
 ### Prerequisites
 #### To Use the Crawler if the Dataset, the  [Politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) Folder, is not Downloaded
 The crawler is built with scrapy. Use the following command to download the scrapy python package.

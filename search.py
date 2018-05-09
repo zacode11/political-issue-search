@@ -149,8 +149,7 @@ def main():
             return
     search(query, num_results)
 
-if __name__ == "__main__":
-    main()
+main()
 
 
 

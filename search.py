@@ -39,7 +39,7 @@ def create_dat(filename):
                     for char in dat_string:
                         if(ord(char) > 128):
                             dat_string = dat_string.replace(char, '')
-                    if(len(dat_string) < 3):
+                    if(len(dat_string) < 3 or len(list_item['document']) < 5):
                         continue
                     dat.write(dat_string.lower())
                     dat.write("\n")

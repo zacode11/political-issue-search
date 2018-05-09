@@ -95,7 +95,7 @@ def format_results(issues, results, print_results):
 def create_dataset():
     if not os.path.exists("pol.json"):
         print("creating json")
-        os.system("scrapycrawl  crawl oti -o pol.json")
+        os.system("scrapy crawl oti -o pol.json")
     if(os.path.isdir("idx")):
         shutil.rmtree("idx")
     create_dat("pol.json")

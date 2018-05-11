@@ -13,6 +13,8 @@ You can type in anything related to politics and elections and it will show up. 
 The search engine will return relevant results on politician stances as well as ratings given to them by various
 interests groups (such as the NRA).
 
+[Link to video explaining our search engine](https://mediaspace.illinois.edu/media/t/1_ibg1bhzy)
+
 ## Getting Started
 There are several ways to access and run the code for this project.
 1. [Download](https://github.com/zacode11/political-issue-search/archive/master.zip) or Clone the entire repository using `git clone https://github.com/zacode11/political-issue-search.git`

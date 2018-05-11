@@ -1,12 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-#import os, sys, inspect
+import os, sys, inspect
 
-# sys.path.insert(1, os.path.join(sys.path[0], '..'))
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
 # sys.path.insert(1, os.path.join(sys.path[0], '../..'))
 
 import search
+import json
 
 
 def index(request):
@@ -19,9 +20,17 @@ def index(request):
 def results(request):
 	query = request.GET.get('q', '')
 
-	#dir_path = os.getcwd()
 	print(query)
-	#print(dir_path)
-	print(search.front_end_search(query, 10))
+	os.chdir('..')
+	os.system('python search.py \"{}\" {} -f'.format(query, str(10)))
+	with open('results.json', 'r') as f:
+		results = json.load(f)
+	print(results)
+	os.chdir('webapp')
 
-	return HttpResponse(render(request, 'app/results.html'))
+	context = {
+		'query': query,
+		'results': results,
+	}
+
+	return HttpResponse(render(request, 'app/results.html', context)) 

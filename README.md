@@ -43,6 +43,11 @@ pip install metapy pytoml --user
 ```
 This project also uses *JSON* and *Regular Expression (RegEx)*. Both are part of the python core library and will function as long as Python 2.6 or greater is being used.
 
+The Django web app requires the Django package that can be installed as follows.
+```bash
+pip install django==2.05
+```
+
 ### Setting Up the Environment
 As long as the user has downloaded all the necessary files and installed all the prerequisite libraries, the environment should be all set up.
 
@@ -115,3 +120,12 @@ result_array = search.search("Richard Durbin on Education", 20)
 result_array = search.search("Richard Durbin on Education", 20, False)
 ```
 Note: This method will call the **create_dataset()** if the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder is not in the same directory.
+
+## Django Web App
+
+Finally, we included a web app to show off a simple use case of the Python API.
+
+To run the webapp, make sure you have both the root directory of the repo and the webapp directory downloaded locally. Withing the webapp directory run the following command to run the webserver.
+```python manage.py runserver
+```
+If you open a web browser and access *http://127.0.0.1:8000* you will find the web app where you can search for some politician and/or political phrases and recieve a results page with some cards showing resulting information. Users can return to the initial search page by clicking on the badge labelled Political Search.

@@ -126,6 +126,7 @@ Note: This method will call the **create_dataset()** if the [politiciandataset](
 Finally, we included a web app to show off a simple use case of the Python API.
 
 To run the webapp, make sure you have both the root directory of the repo and the webapp directory downloaded locally. Withing the webapp directory run the following command to run the webserver.
-```python manage.py runserver
+```bash
+python manage.py runserver
 ```
 If you open a web browser and access *http://127.0.0.1:8000* you will find the web app where you can search for some politician and/or political phrases and recieve a results page with some cards showing resulting information. Users can return to the initial search page by clicking on the badge labelled Political Search.

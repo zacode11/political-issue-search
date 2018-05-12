@@ -19,15 +19,15 @@ To access and run the code for this project, [Download](https://github.com/zacod
 
 ### Prerequisites
 #### To Use the Crawler if the Dataset, the  [Politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) Folder, is not Downloaded/In the Directory
-The crawler is built with scrapy. Use the following command to download the scrapy python package.
+The crawler is built with scrapy. Scrapy was used to scrape web pages outlining the political stances of various politicial leaders and candidates on various hot-button issues. Use the following command to download the scrapy python package.
 ```bash
 pip install scrapy
 ```
-Within the main directory containing scrapy.cfg, run the following command to scrape the data (if you want to scrape it again)
+Within the main directory containing scrapy.cfg, run the following command to scrape the data (if you want to scrape it again).
 ```bash
 scrapy crawl oti -o pol.json
 ```
-This will generate a list of json objects in [pol.json](https://github.com/zacode11/political-issue-search/blob/master/pol.json)
+This will generate a list of json objects in [pol.json](https://github.com/zacode11/political-issue-search/blob/master/pol.json).
 #### Other Prerequisites
 This project uses [metapy](https://github.com/meta-toolkit/metapy) Use the following steps to download.
 ```bash

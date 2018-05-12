@@ -10,19 +10,15 @@ You can type in anything related to politics and elections and it will show up. 
 3. "Rand Paul Healthcare"
 4. "Peter Roskam"
 
-The search engine will return relevant results on politician stances as well as ratings given to them by various
-interests groups (such as the NRA).
+The search engine will return relevant results on politician stances.
 
 [Link to video explaining our search engine](https://mediaspace.illinois.edu/media/t/1_ibg1bhzy)
 
 ## Getting Started
-There are several ways to access and run the code for this project.
-1. [Download](https://github.com/zacode11/political-issue-search/archive/master.zip) or Clone the entire repository using `git clone https://github.com/zacode11/political-issue-search.git`
-2. Alternatively, the searching functionalities will execute if only the [stopword.txt](https://github.com/zacode11/political-issue-search/blob/master/stopwords.txt), [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py), and [config.toml](https://github.com/zacode11/political-issue-search/blob/master/config.toml) files along with the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder are downloaded.
-3. If the user wishes to recreate the dataset using the crawler provided, instead of downloading the dataset, the following files will be necessary: [scrapy.cfg](https://github.com/zacode11/political-issue-search/blob/master/scrapy.cfg) and the contents of the [oti_scraping](https://github.com/zacode11/political-issue-search/blob/master/oti_scraping) folder. Additionally, [stopword.txt](https://github.com/zacode11/political-issue-search/blob/master/stopwords.txt), [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py), and [config.toml](https://github.com/zacode11/political-issue-search/blob/master/config.toml) files will be needed to conduct searches.
+To access and run the code for this project, [Download](https://github.com/zacode11/political-issue-search/archive/master.zip) or Clone the entire repository using `git clone https://github.com/zacode11/political-issue-search.git`
 
 ### Prerequisites
-#### To Use the Crawler if the Dataset, the  [Politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) Folder, is not Downloaded
+#### To Use the Crawler if the Dataset, the  [Politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) Folder, is not Downloaded/In the Directory
 The crawler is built with scrapy. Use the following command to download the scrapy python package.
 ```bash
 pip install scrapy
@@ -62,7 +58,7 @@ ngram = 1
 filter = "default-unigram-chain"
 ```
 
-## Running Script on the Terminal
+## Command Line Interface
 The searching functionality can be executed on the terminal with the following command. The results of the search will be printed to the terminal
 ```bash
 # basic structure
@@ -77,10 +73,11 @@ An optional argument can be passed in to specify the number of desired results t
 python search.py query number_of_results
 
 #example
+#Note that the default number of results is 10
 python search.py "Jeff Sessions on abortions" 3
 ```
 
-Running the code on the terminal will generate the dataset, the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder as well as create an inverted index if any of them do not already exists in the project. This may result in the first execution taking significantly longer than subsequent runs. In the case the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder needs to be created, if [pol.json](https://github.com/zacode11/political-issue-search/blob/master/pol.json) is not in the current directory, it will be created as well using the scrapy crawler.       
+Running the code on the terminal will generate the dataset, the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder as well as create an inverted index if either of them do not already exists in the project. This may result in the first execution taking significantly longer than subsequent runs. In the case the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder needs to be created, if [pol.json](https://github.com/zacode11/political-issue-search/blob/master/pol.json) is not in the current directory, it will be created as well using the scrapy crawler.       
 
 
 
@@ -93,7 +90,7 @@ import search
 This will give the user access to the methods in [search.py](https://github.com/zacode11/political-issue-search/blob/master/search.py)
 The important methods are as follows:
 #### create_dataset()
-This method will create the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder for use by the search engine. This method will overwrite the folder if it already exists. Additionally, this method will create the [pol.json](https://github.com/zacode11/political-issue-search/blob/master/pol.json) file using the scrapy crawler  if it does not exist in the current directory (make take up to 30 seconds).
+This method will create the [politiciandataset](https://github.com/zacode11/political-issue-search/blob/master/politiciandataset) folder for use by the search engine. This method will overwrite the folder if it already exists. Additionally, this method will create the [pol.json](https://github.com/zacode11/political-issue-search/blob/master/pol.json) file using the scrapy crawler if it does not exist in the current directory (make take up to 30 seconds).
 ```python
 # example call
 search.create_dataset()
@@ -132,3 +129,8 @@ To run the webapp, make sure you have both the root directory of the repo and th
 python manage.py runserver
 ```
 If you open a web browser and access *http://127.0.0.1:8000* you will find the web app where you can search for some politician and/or political phrases and recieve a results page with some cards showing resulting information. Users can return to the initial search page by clicking on the badge labelled Political Search.
+
+## Contributions
+Prithvi Ramanathan worked on and documented the python searching API and the command-line interface.
+Zac Codiamat worked on and documented the scrapy web crawler to get the politician data and the web application.
+AJay Jain came up with the idea and structure of the project, completed the project proposal and progress report, and worked on/edited the video tutorial.
